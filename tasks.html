@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>agidoro</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="#">agidoro</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Timer</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Tasks<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Stats</a>
+                </li>
+            </ul>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#settingsModal">settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div id="buttonCont">
+            <button class="btn btn-light" type="button" id="addTaskButton">add task</button>
+            <button class="btn btn-light" type="button" id="openTopicButton">manage topics</button>
+        </div>
+        <div class="row" id="activeRow">
+            <div class="col-md">
+                <h3 class="display-5" style="text-align: center; padding: 1rem 0 1rem 0">
+                    active
+                    <button class="btn btn-link btn-collapse" type="button" data-toggle="collapse" data-target="#activeCards" aria-expanded="false" aria-controls="cardContainer">
+                        collapse
+                    </button>
+                </h3>
+                <div id="activeCards" class="cardContainer">
+                </div>
+            </div>
+        </div>
+        <div class="row colRow">
+            <div class="col-md">
+                <h3 class="display-5" style="text-align: center; padding: 1rem 0 1rem 0">
+                    backlog
+                    <button class="btn btn-link btn-collapse" type="button" data-toggle="collapse" data-target="#backlogCards" aria-expanded="false" aria-controls="cardContainer">
+                        collapse
+                    </button>
+                </h3>
+                <div id="backlogCards" class="cardContainer">
+                </div>
+            </div>
+            <div class="col-md">
+                <h3 class="display-5" style="text-align: center; padding: 1rem 0 1rem 0">
+                    in progress
+                    <button class="btn btn-link btn-collapse" type="button" data-toggle="collapse" data-target="#progressCards" aria-expanded="false" aria-controls="cardContainer">
+                        collapse
+                    </button>
+                </h3>
+                <div id="progressCards" class="cardContainer">
+                </div>
+            </div>
+            <div class="col-md">
+                <h3 class="display-5" style="text-align: center; padding: 1rem 0 1rem 0">
+                    completed
+                    <button class="btn btn-link btn-collapse" type="button" data-toggle="collapse" data-target="#completedCards" aria-expanded="false" aria-controls="cardContainer">
+                        collapse
+                    </button>
+                </h3>
+                <div id="completedCards" class="cardContainer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal fade" id="topicsModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+        <span id="taskEditMode" style="display: none"></span>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="topicModalLabel">Topic Manager</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row" id="topicContainer">
+                            <div class="col-md-12" id="addTopicButtonCont">
+                                <button type="button" class="btn btn-light" style="margin-top: 0.5em" id="addTopicButton">
+                                    <span aria-hidden="true"><ion-icon name="add"></ion-icon></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveTopics">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+        <span id="taskEditMode" style="display: none"></span>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Add Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="taskTitle" class="col-md-6 col-form-label">Title</label>
+                            <div class="col-md-12">
+                                <input style="display: inline-block" type="text" class="form-control taskItem" id="taskTitle" placeholder="Untitled Task">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="taskDeadline" class="col-md-6 col-form-label">Deadline</label>
+                            <div class="col-md-12">
+                                <input style="display: inline-block" type="date" class="form-control taskItem" id="taskDeadline">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="taskDesc" class="col-md-6 col-form-label">Description</label>
+                            <div class="col-md-12">
+                                <textarea class="form-control taskItem" id="taskDesc" placeholder="Task Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="blockingTasks">
+                            <label class="col-md-6 col-form-label" id="blockersLabel">Add Blocking tasks</label>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-light" style="margin-top: 0.5em" id="addBlocker">
+                                    <span aria-hidden="true"><ion-icon name="add"></ion-icon></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="taskTopics">
+                            <label class="col-md-6 col-form-label" id="topicsLabel">Add topics</label>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-light" style="margin-top: 0.5em" id="addTopic">
+                                    <span aria-hidden="true"><ion-icon name="add"></ion-icon></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveTask">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="topicModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+        <span id="taskEditMode" style="display: none"></span>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Topic Manager</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="">First and last name</span>
+                        </div>
+                        <input type="text" class="form-control">
+                        <input type="color" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveTopics">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="completionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="completionModalLabel">Settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="pomodoroLengthM" class="col-md-6 col-form-label">Pomodoro Length</label>
+                            <div class="col-md-6">
+                                <input style="width: 48%; padding-right: 1%; display: inline-block" type="number" class="form-control" id="pomodoroLengthM" placeholder="mm">
+                                <input style="width: 48%; display: inline-block" type="number" class="form-control" id="pomodoroLengthS" placeholder="ss">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sBreakLengthM" class="col-md-6 col-form-label">Short Break Length</label>
+                            <div class="col-md-6">
+                                <input style="width: 48%; padding-right: 1%; display: inline-block" type="number" class="form-control" id="sBreakLengthM" placeholder="mm">
+                                <input style="width: 48%; display: inline-block" type="number" class="form-control" id="sBreakLengthS" placeholder="ss">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lBreakLengthM" class="col-md-6 col-form-label">Long Break Length</label>
+                            <div class="col-md-6">
+                                <input style="width: 48%; padding-right: 1%; display: inline-block" type="number" class="form-control" id="lBreakLengthM" placeholder="mm">
+                                <input style="width: 48%; display: inline-block" type="number" class="form-control" id="lBreakLengthS" placeholder="ss">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="setLength" class="col-md-6 col-form-label">Set Length</label>
+                            <div class="col-md-6">
+                                <input style="width: 99%" type="number" class="form-control" id="setLength" placeholder="pomodoros">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="autoStartBreaks" class="col-md-6 col-form-label">Automatically Begin?</label>
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="pomodoroAutomatic">
+                                    <label class="form-check-label" for="pomodoroAutomatic">Pomodoros</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="breakAutomatic">
+                                    <label class="form-check-label" for="breakAutomatic">Breaks</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="notifs" class="col-md-6 col-form-label">Notifications?</label>
+                            <div class="col-md-5">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="notifs">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveSettings">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="dbHandler.js"></script>
+    <script src="tasks.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+</body>
+</html>

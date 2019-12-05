@@ -1,0 +1,168 @@
+﻿
+
+#timerBox {
+    margin-top: 5rem;
+    background-color: #f2624b;
+    text-align: center;
+    color: white;
+    opacity: 0;
+}
+
+#timerDigits {
+    text-align: center;
+    font-weight: bold;
+    font-size: 10rem;
+    color: white;
+}
+
+#timerButtons > button {
+    background-color: transparent;
+    border: 2px solid white;
+    font-family: "Quicksand", sans-serif;
+}
+#timerButtons > button:hover {
+    border: 2px solid #ccc;
+    color: #ccc;
+}
+
+.btn-disabled {
+    opacity: 0.7;
+    cursor: default !important;
+}
+.btn-disabled:hover {
+    border: 2px solid white !important;
+    color: white !important;
+}
+
+#pomodoroCounter {
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-family: "Quicksand", sans-serif;
+}
+
+.spacer {
+    display: inline-block;
+}
+
+.horizontalSpacer {
+    height: 2rem;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.nonbold {
+    font-weight: normal !important;
+    font-size: 1rem;
+}
+
+.card {
+    margin-top: 0.5em;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.btn-collapse {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .btn-collapse {
+        display: block;
+        margin: auto;
+        margin-bottom: -1em;
+    }
+}
+
+.deadline {
+    color: #cc0202;
+    display: block;
+    font-size: 0.9rem;
+    font-variant: small-caps;
+    
+}
+.blockers {
+    color: goldenrod;
+    display: block;
+    font-size: 0.9rem;
+    font-variant: small-caps;
+}
+
+.taskNumber {
+    padding-left: 0.4em;
+    color: #007bff;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.blocked {
+    opacity: 0.6;
+}
+
+.uid {
+    font-size: 1rem;
+    color: #007bff;
+    padding-right: 0.5em;
+}
+
+.iconset {
+    float: right;
+    display: inline-block;
+    color: #777c84;
+}
+
+ion-icon {
+    transition: color linear 0.1s;
+    cursor: pointer;
+}
+
+ion-icon:hover {
+    color: black;
+}
+
+.trash-icon:hover {
+    color: red;
+}
+
+.flash-icon:hover {
+    color: goldenrod;
+}
+
+.checkmark-circle-outline-icon:hover {
+    color: green;
+}
+
+.active-flash-icon {
+    color: goldenrod;
+}
+.active-flash-icon:hover {
+    color: black;
+}
+
+#buttonCont {
+    text-align: center;
+    margin-top: 1rem;
+    display: block;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.halfWidth {
+    width: 100%;
+}
+
+@media (min-width: 767px) {
+    .halfWidth {
+        width: 50%;
+    }
+}
+
+.badgeContainer {
+    text-align: right;
+}
